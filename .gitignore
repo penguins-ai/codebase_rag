@@ -1,3 +1,5 @@
 __pycache__/
 data/
 rag_venv/
+test_retrieval.py
+.env
