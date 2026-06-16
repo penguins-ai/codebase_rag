@@ -29,7 +29,7 @@
       const res = await fetch("/ask", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ question, top_k: 6 })
+        body: JSON.stringify({ question, top_k: 8 })
       });
 
       const data = await res.json();

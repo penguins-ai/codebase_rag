@@ -46,5 +46,9 @@ def make_ask_router(retriever: Retriever, llm: LLMService) -> APIRouter:
             ],
             chunks_searched=total,
         )
+    @router.get("/debug")
+    def debug(q: str, top_k: int = 8):
+        chunks, total = retriever.search(q, top_k)
+        return [{"name": c["name"], "score": c["score"], "file": c["file"]} for c in chunks]
 
     return router

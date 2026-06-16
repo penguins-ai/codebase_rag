@@ -1,5 +1,6 @@
 # embed_and_store.py
 import json
+import os
 import numpy as np
 import faiss
 from pathlib import Path
@@ -11,7 +12,9 @@ CHUNKS_PATH = ROOT / "data/chunks/mqsim_chunks.json"
 INDEX_PATH  = ROOT / "data/mqsim.index"
 META_PATH   = ROOT / "data/mqsim_metadata.json"
 
-model = SentenceTransformer("BAAI/bge-m3")
+token = os.getenv("HF_TOKEN") or os.getenv("HUGGINGFACE_HUB_TOKEN")
+
+model = SentenceTransformer("BAAI/bge-m3", token=token)
 
 def build_embed_text(chunk: dict) -> str:
     """Richer text = better retrieval. Combine metadata + content."""
